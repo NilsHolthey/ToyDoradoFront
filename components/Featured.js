@@ -51,6 +51,12 @@ const ButtonContainer = styled.div`
 
 const ImageWrapper = styled.div`
   background-color: rgba(241, 241, 241, 0.7);
+  background: rgb(247, 244, 225);
+  background: radial-gradient(
+    circle,
+    rgba(247, 244, 225, 1) 40%,
+    rgba(241, 241, 241, 0.5) 100%
+  );
   border-radius: 50%;
   position: relative;
   height: 180px;

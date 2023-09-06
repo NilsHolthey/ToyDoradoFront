@@ -57,7 +57,7 @@ export default function Header() {
             <NavLink href={'/'}>Home</NavLink>
             <NavLink href={'/products'}>Alle Produkte</NavLink>
             <NavLink href={'/categories'}>Kategorien</NavLink>
-            <NavLink href={'/cart'}>Wunschzettel</NavLink>
+            <NavLink href={'/cart'}>Wunschzettel(0)</NavLink>
           </StyledNav>
         </Wrapper>
       </Center>

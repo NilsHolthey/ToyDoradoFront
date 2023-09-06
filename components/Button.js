@@ -1,3 +1,4 @@
+import { primary } from '@/lib/colors';
 import styled, { css } from 'styled-components';
 
 export const ButtonStyle = css`
@@ -31,8 +32,8 @@ export const ButtonStyle = css`
     props.prmy === '1' &&
     css`
       font-size: 0.9rem;
-      background-color: #f5df4d;
-      border: 1px solid #f5df4d;
+      background-color: ${primary};
+      border: 1px solid ${primary};
     `}
 
 ${(props) =>
