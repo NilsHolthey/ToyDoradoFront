@@ -34,17 +34,18 @@ export const ButtonStyle = css`
       font-size: 0.9rem;
       background-color: ${primary};
       border: 1px solid ${primary};
+      gap: 5px;
     `}
 
 ${(props) =>
     props.size === 'lg' &&
     css`
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       padding: 10px 20px;
       gap: 2px;
       align-items: center;
       svg {
-        height: 18px;
+        height: 20px;
       }
     `}
 `;
