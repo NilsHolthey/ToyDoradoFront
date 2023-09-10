@@ -1,3 +1,4 @@
+import { primary } from '@/lib/colors';
 import styled, { css } from 'styled-components';
 
 export const ButtonStyle = css`
@@ -31,19 +32,20 @@ export const ButtonStyle = css`
     props.prmy === '1' &&
     css`
       font-size: 0.9rem;
-      background-color: #f5df4d;
-      border: 1px solid #f5df4d;
+      background-color: ${primary};
+      border: 1px solid ${primary};
+      gap: 5px;
     `}
 
 ${(props) =>
     props.size === 'lg' &&
     css`
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       padding: 10px 20px;
       gap: 2px;
       align-items: center;
       svg {
-        height: 18px;
+        height: 20px;
       }
     `}
 `;

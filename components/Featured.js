@@ -7,11 +7,12 @@ import ListIcon from './icons/ListIcon';
 const Wrapper = styled.div`
   max-width: 1000px;
   margin: 0 auto;
-  padding: 50px 0;
+  padding: 100px 0;
 `;
 const Bg = styled.div`
   background-color: #939597;
   color: rgb(241, 241, 241);
+  padding-top: 160px;
 `;
 const Title = styled.h1`
   margin: 0;
@@ -50,7 +51,7 @@ const ButtonContainer = styled.div`
 `;
 
 const ImageWrapper = styled.div`
-  background-color: rgba(241, 241, 241, 0.7);
+  background-color: rgba(241, 241, 241, 0.8);
   border-radius: 50%;
   position: relative;
   height: 180px;
@@ -74,7 +75,7 @@ export default function Featured({ product }) {
               <Desc>{product.description}.</Desc>
               <ButtonContainer>
                 <ButtonLink
-                  href={'/products/' + product._id}
+                  href={'/product/' + product._id}
                   light={1}
                   outline={1}
                 >
