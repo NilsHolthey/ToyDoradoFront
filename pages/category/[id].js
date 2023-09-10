@@ -1,6 +1,7 @@
 import Header from '@/components/Header';
 import ProductsGrid from '@/components/ProductsGrid';
 import { Title } from '@/components/Title';
+import { mongooseConnect } from '@/lib/mongoose';
 import { Category } from '@/models/Categories';
 import { Product } from '@/models/Product';
 import Link from 'next/link';
@@ -67,6 +68,7 @@ export default function CategoryPage({ category, products, mainCategories }) {
 }
 
 export async function getServerSideProps(context) {
+  await mongooseConnect();
   const category = await Category.findById(context.query.id);
   const catIds = category._id;
   const products = await Product.find({ category: catIds });
