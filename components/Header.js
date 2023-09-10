@@ -87,9 +87,7 @@ export default function Header() {
           <StyledNav>
             <NavLink href={'/'}>Home</NavLink>
             <NavLink href={'/products'}>Alle Produkte</NavLink>
-            <NavLink href={'/categories'} activeStyle={{ color: 'red' }}>
-              Kategorien
-            </NavLink>
+            <NavLink href={'/categories'}>Kategorien</NavLink>
             <NavLink href={'/cart'}>Wunschzettel(0)</NavLink>
           </StyledNav>
         </Wrapper>
