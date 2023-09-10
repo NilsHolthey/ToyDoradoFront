@@ -16,6 +16,7 @@ const StyledDiv = styled.div`
   padding: 20px 0 10px 0;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 25px;
   margin: 0 auto;
 
@@ -45,6 +46,10 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
+const NavContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
 export default function CategoryPage({ category, products, mainCategories }) {
   const pathname = usePathname();
   return (
@@ -52,11 +57,11 @@ export default function CategoryPage({ category, products, mainCategories }) {
       <Header />
       <StyledDiv>
         {mainCategories.map((cat) => (
-          <div key={cat._id}>
+          <NavContainer key={cat._id}>
             <NavLink href={'/category/' + cat._id} pathname={pathname}>
               {cat.name}
             </NavLink>
-          </div>
+          </NavContainer>
         ))}
       </StyledDiv>
       <Wrapper>
