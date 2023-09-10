@@ -10,7 +10,7 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 const Container = styled.nav`
-  padding-top: 220px;
+  padding-top: 250px;
   margin: 0 auto;
 
   display: flex;
@@ -22,6 +22,7 @@ const Container = styled.nav`
 
 const Subheader = styled.div`
   position: fixed;
+  flex-wrap: wrap;
   top: 160px;
   width: 100%;
   padding: 20px 0 10px 0;
@@ -101,15 +102,20 @@ const CategoryWrapper = styled.div`
   padding: 0 30px 50px 30px;
 `;
 
+const NavContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
 export default function CategoriesPage({ mainCategories, categoriesProducts }) {
   return (
     <>
       <Header />
       <Subheader>
         {mainCategories.map((cat) => (
-          <div key={cat._id}>
+          <NavContainer key={cat._id}>
             <NavLink href={'/category/' + cat._id}>{cat.name}</NavLink>
-          </div>
+          </NavContainer>
         ))}
       </Subheader>
       <Container>
