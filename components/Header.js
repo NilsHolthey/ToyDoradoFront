@@ -44,6 +44,14 @@ const NavLink = styled(Link)`
   &:hover {
     color: #f5df4d;
   }
+  /* color: ${(props) =>
+    props.href === props.pathName ? '#f5df4d' : '#333'}; */
+  .inactiveLink {
+    color: #f5df4d;
+  }
+  .inactiveLink {
+    color: rgb(51, 51, 51);
+  }
 `;
 const StyledLogo = styled.div`
   font-size: 3.5rem;
@@ -51,7 +59,7 @@ const StyledLogo = styled.div`
   opacity: 0.7;
   -webkit-background-clip: text;
   background-clip: text;
-  background-image: url('Be_920.jpg');
+  background-image: url('/Be_920.jpg');
   background-position: center;
 
   color: transparent;
@@ -73,13 +81,15 @@ export default function Header() {
   return (
     <StyledHeader>
       <Center>
-        <StyledLogo className={boblyOne.className}>~TOYDORADO~</StyledLogo>
+        <StyledLogo className={boblyOne.className}>TOYDORADO</StyledLogo>
         <Wrapper>
           {/* <Logo href={'/'}>ToyDorado</Logo> */}
           <StyledNav>
             <NavLink href={'/'}>Home</NavLink>
             <NavLink href={'/products'}>Alle Produkte</NavLink>
-            <NavLink href={'/categories'}>Kategorien</NavLink>
+            <NavLink href={'/categories'} activeStyle={{ color: 'red' }}>
+              Kategorien
+            </NavLink>
             <NavLink href={'/cart'}>Wunschzettel(0)</NavLink>
           </StyledNav>
         </Wrapper>

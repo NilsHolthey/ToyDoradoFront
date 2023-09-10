@@ -9,8 +9,8 @@ import Link from 'next/link';
 
 import styled from 'styled-components';
 
-const SubHeader = styled.nav`
-  padding-top: 160px;
+const Container = styled.nav`
+  padding-top: 220px;
   margin: 0 auto;
 
   display: flex;
@@ -18,6 +18,29 @@ const SubHeader = styled.nav`
   flex-direction: column;
   align-items: center;
   gap: 10px;
+`;
+
+const Subheader = styled.div`
+  position: fixed;
+  top: 160px;
+  width: 100%;
+  padding: 20px 0 10px 0;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin: 0 auto;
+
+  backdrop-filter: blur(5px);
+  z-index: 5;
+  //background-color: rgba(147, 149, 151, 1);
+  background-color: rgba(241, 241, 241, 0.7);
+`;
+
+const NavLink = styled(Link)`
+  color: rgb(51, 51, 51);
+  text-underline-offset: 0.4rem;
+  text-decoration: underline rgba(51, 51, 51, 0.5) solid 1px;
+  text-transform: uppercase;
 `;
 const Wrapper = styled.div`
   margin-bottom: 10px;
@@ -37,6 +60,8 @@ const CategoriesTitle = styled.div`
   gap: 15px;
   margin-top: 40px;
   margin-bottom: 0px;
+  width: 100%;
+  justify-content: space-between;
   h2 {
     font-size: 1.9rem;
     font-weight: bolder;
@@ -80,8 +105,14 @@ export default function CategoriesPage({ mainCategories, categoriesProducts }) {
   return (
     <>
       <Header />
-
-      <SubHeader>
+      <Subheader>
+        {mainCategories.map((cat) => (
+          <div key={cat._id}>
+            <NavLink href={'/category/' + cat._id}>{cat.name}</NavLink>
+          </div>
+        ))}
+      </Subheader>
+      <Container>
         <Title>Kategorien</Title>
         <Wrapper>
           {mainCategories.map((cat) => (
@@ -99,15 +130,15 @@ export default function CategoriesPage({ mainCategories, categoriesProducts }) {
                 {categoriesProducts[cat._id].map((p) => (
                   <ProductBox {...p} key={p._id} />
                 ))}
-                <StyledSquareLink href={'/category/' + cat._id}>
+                {/* <StyledSquareLink href={'/category/' + cat._id}>
                   {' '}
                   mehr anzeigen &rarr;
-                </StyledSquareLink>
+                </StyledSquareLink> */}
               </CategoryGrid>
             </CategoryWrapper>
           ))}
         </Wrapper>
-      </SubHeader>
+      </Container>
     </>
   );
 }
@@ -119,7 +150,7 @@ export async function getServerSideProps() {
   const categoriesProducts = {};
   for (const mainCat of mainCategories) {
     const products = await Product.find({ category: mainCat._id }, null, {
-      limit: 3,
+      limit: 4,
       sort: { _id: -1 },
     });
     categoriesProducts[mainCat._id] = products;
