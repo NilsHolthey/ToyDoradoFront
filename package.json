@@ -12,12 +12,12 @@
     "@next/font": "^13.4.19",
     "eslint": "8.48.0",
     "eslint-config-next": "13.4.19",
+    "mongodb": "^3.7.4",
     "mongoose": "^7.5.0",
     "next": "13.4.19",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "styled-components": "^5.3.9",
-    "mongodb": "^3.6.3"
+    "styled-components": "^5.3.9"
   },
   "devDependencies": {
     "@types/styled-components": "^5.1.26"
