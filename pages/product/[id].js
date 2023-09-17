@@ -155,7 +155,6 @@ export default function ProductPage({ product }) {
     <>
       <Header />
       <Wrapper>
-        {/* <Title className={josefinSans.className}>{product.title} </Title> */}
         <ColWrapper>
           <Box>
             {product.images.length > 0 ? (

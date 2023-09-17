@@ -12,6 +12,7 @@ const GlobalStyles = createGlobalStyle`
 		/* outline:1px solid green ; */
 		margin: 0;
 		padding:0;	
+		
 	}
 
     body{
@@ -20,6 +21,7 @@ const GlobalStyles = createGlobalStyle`
      padding: 0;
      /* font-family: 'Inter', sans-serif; */
     background-color: rgb(241, 241, 241);
+	
 }
 
 

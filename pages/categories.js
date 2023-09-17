@@ -1,4 +1,6 @@
+import CategoriesPageContent from '@/components/CategoriesPageContent';
 import Header from '@/components/Header';
+import Layout from '@/components/Layout';
 import ProductBox from '@/components/ProductBox';
 import { Title } from '@/components/Title';
 import { highlight } from '@/lib/colors';
@@ -6,11 +8,13 @@ import { mongooseConnect } from '@/lib/mongoose';
 import { Category } from '@/models/Categories';
 import { Product } from '@/models/Product';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 import styled from 'styled-components';
 
 const Container = styled.nav`
   padding-top: 250px;
+  padding-top: ${(props) => (props.pathname === '/' ? '50px' : '250px')};
   margin: 0 auto;
 
   display: flex;
@@ -21,20 +25,20 @@ const Container = styled.nav`
 `;
 
 const Subheader = styled.div`
-  position: fixed;
+  position: sticky;
   flex-wrap: wrap;
-  top: 160px;
+  top: 81px;
   width: 100%;
-  padding: 20px 0 10px 0;
+  padding: 10px 0 20px 0;
   display: flex;
   justify-content: center;
   gap: 25px;
   margin: 0 auto;
-
-  backdrop-filter: blur(5px);
+  display: ${(props) => (props.pathname === '/' ? 'none' : '')};
+  /* backdrop-filter: blur(5px); */
   z-index: 5;
   //background-color: rgba(147, 149, 151, 1);
-  background-color: rgba(241, 241, 241, 0.7);
+  background-color: rgba(241, 241, 241, 0.9);
 `;
 
 const NavLink = styled(Link)`
@@ -108,44 +112,21 @@ const NavContainer = styled.div`
 `;
 
 export default function CategoriesPage({ mainCategories, categoriesProducts }) {
+  const pathname = usePathname();
   return (
-    <>
-      <Header />
-      <Subheader>
+    <Layout>
+      <Subheader pathname={pathname}>
         {mainCategories.map((cat) => (
           <NavContainer key={cat._id}>
             <NavLink href={'/category/' + cat._id}>{cat.name}</NavLink>
           </NavContainer>
         ))}
       </Subheader>
-      <Container>
-        <Title>Kategorien</Title>
-        <Wrapper>
-          {mainCategories.map((cat) => (
-            <CategoryWrapper key={cat._id}>
-              <CategoriesTitle>
-                <h2>{cat.name}</h2>
-                <div>
-                  <StyledLink href={'/category/' + cat._id}>
-                    mehr Anzeigen
-                  </StyledLink>
-                </div>
-              </CategoriesTitle>
-
-              <CategoryGrid>
-                {categoriesProducts[cat._id].map((p) => (
-                  <ProductBox {...p} key={p._id} />
-                ))}
-                {/* <StyledSquareLink href={'/category/' + cat._id}>
-                  {' '}
-                  mehr anzeigen &rarr;
-                </StyledSquareLink> */}
-              </CategoryGrid>
-            </CategoryWrapper>
-          ))}
-        </Wrapper>
-      </Container>
-    </>
+      <CategoriesPageContent
+        mainCategories={mainCategories}
+        categoriesProducts={categoriesProducts}
+      />
+    </Layout>
   );
 }
 

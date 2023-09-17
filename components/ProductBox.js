@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import Button from './Button';
 import ListIcon from './icons/ListIcon';
 import Link from 'next/link';
+import { useContext } from 'react';
+import { CartContext } from './CartContext';
 
 const PlaceholderImage = styled.img`
   cursor: pointer;
@@ -81,6 +83,7 @@ const Price = styled.div`
 `;
 
 export default function ProductBox({ _id, title, description, price, images }) {
+  const { addProduct } = useContext(CartContext);
   const url = '/product/' + _id;
 
   return (
@@ -99,7 +102,7 @@ export default function ProductBox({ _id, title, description, price, images }) {
 
         <PiceRow>
           <Price>{price} €</Price>
-          <Button prmy="1">
+          <Button prmy="1" onClick={() => addProduct(_id)}>
             <ListIcon />
           </Button>
         </PiceRow>
