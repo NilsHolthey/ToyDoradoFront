@@ -1,8 +1,11 @@
+/* eslint-disable @next/next/no-img-element */
 import styled from 'styled-components';
 
 import Button from './Button';
 import ButtonLink from './ButtonLink';
 import ListIcon from './icons/ListIcon';
+import { useContext } from 'react';
+import { CartContext } from './CartContext';
 
 const Wrapper = styled.div`
   max-width: 1000px;
@@ -12,7 +15,7 @@ const Wrapper = styled.div`
 const Bg = styled.div`
   background-color: #939597;
   color: rgb(241, 241, 241);
-  padding-top: 160px;
+  padding-top: 10px;
 `;
 const Title = styled.h1`
   margin: 0;
@@ -27,7 +30,7 @@ const Desc = styled.p`
 const Container = styled.div`
   display: grid;
 
-  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   gap: 40px;
   img {
     position: absolute;
@@ -35,6 +38,10 @@ const Container = styled.div`
     padding: 1px;
     filter: drop-shadow(8px 8px 12px rgba(51, 51, 51, 0.9))
       drop-shadow(-4px -4px 10px rgba(221, 221, 221, 0.7));
+  }
+  @media screen and (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: unset;
   }
 `;
 
@@ -65,6 +72,10 @@ const ImageWrapper = styled.div`
 `;
 
 export default function Featured({ product }) {
+  const { addProduct } = useContext(CartContext);
+  function addFeaturedToCart() {
+    addProduct(product._id);
+  }
   return (
     <Bg>
       <Wrapper>
@@ -81,7 +92,7 @@ export default function Featured({ product }) {
                 >
                   ...mehr
                 </ButtonLink>
-                <Button type="button" prmy="1">
+                <Button type="button" prmy="1" onClick={addFeaturedToCart}>
                   <ListIcon />
                   Auf den Wunschzettel
                 </Button>
