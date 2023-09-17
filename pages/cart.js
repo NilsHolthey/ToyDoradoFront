@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Button from '@/components/Button';
 import { CartContext } from '@/components/CartContext';
 import Layout from '@/components/Layout';
