@@ -1,4 +1,5 @@
 import Button from '@/components/Button';
+import { CartContext } from '@/components/CartContext';
 import Header from '@/components/Header';
 import ListIcon from '@/components/icons/ListIcon';
 import { primary } from '@/lib/colors';
@@ -6,6 +7,7 @@ import { primary } from '@/lib/colors';
 import { mongooseConnect } from '@/lib/mongoose';
 import { Product } from '@/models/Product';
 import { Josefin_Sans } from 'next/font/google';
+import { useContext } from 'react';
 import styled from 'styled-components';
 
 const josefinSans = Josefin_Sans({ subsets: ['latin'] });
@@ -151,6 +153,7 @@ const PropeertiesRow = styled.div`
 `;
 
 export default function ProductPage({ product }) {
+  const { addProduct } = useContext(CartContext);
   return (
     <>
       <Header />
@@ -185,7 +188,11 @@ export default function ProductPage({ product }) {
 
             <PiceRow>
               <Price> {product.price}€</Price>
-              <Button prmy="1" size="lg">
+              <Button
+                prmy="1"
+                size="lg"
+                onClick={() => addProduct(product._id)}
+              >
                 <ListIcon />
                 Auf den Wunschzettel
               </Button>
