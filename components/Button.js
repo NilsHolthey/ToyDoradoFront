@@ -36,6 +36,16 @@ export const ButtonStyle = css`
       border: 1px solid ${primary};
       gap: 5px;
     `}
+  ${(props) =>
+    props.prmyWide === '1' &&
+    css`
+      font-size: 1.1rem;
+      background-color: ${primary};
+      border: 1px solid ${primary};
+      padding: 10px 20px;
+      display: block;
+      width: 100%;
+    `}
 
 ${(props) =>
     props.size === 'lg' &&

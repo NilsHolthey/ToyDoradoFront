@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { createContext, useEffect, useState } from 'react';
 
 export const CartContext = createContext({});
@@ -16,7 +17,9 @@ export function CartContextProvider({ children }) {
     }
   }, []);
   function addProduct(productId) {
-    setCartProducts((prev) => [...prev, productId]);
+    if (!cartProducts.includes(productId)) {
+      setCartProducts((prev) => [...prev, productId]);
+    }
   }
   function removeProduct(productId) {
     setCartProducts((prev) => {
