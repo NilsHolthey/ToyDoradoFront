@@ -106,7 +106,7 @@ const StreetHolder = styled.div`
 
 export default function CartPage() {
   const [products, setProducts] = useState([]);
-  const { cartProducts, removeProduct } = useContext(CartContext);
+  const { cartProducts, removeProduct, clearCart } = useContext(CartContext);
   const [name, setName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -115,6 +115,7 @@ export default function CartPage() {
   const [streetAddress, setStreetAddress] = useState('');
   const [streetNumber, setStreetNumber] = useState('');
   const [country, setCountry] = useState('');
+  const [isSuccess, setIsSuccess] = useState(false);
 
   useEffect(() => {
     if (cartProducts.length > 0) {
@@ -126,6 +127,30 @@ export default function CartPage() {
     }
   }, [cartProducts]);
 
+  async function goToPayment() {
+    const response = {
+      name,
+      lastName,
+      email,
+      city,
+      postalCode,
+      streetAddress,
+      streetNumber,
+      country,
+      cartProducts,
+    };
+    await axios.post('/api/checkout', response);
+    setIsSuccess(true);
+    clearCart();
+  }
+  useEffect(() => {
+    if (isSuccess) {
+      setTimeout(() => {
+        setIsSuccess(false);
+      }, '5000');
+    }
+  }, [isSuccess]);
+
   function deleteProduct(id) {
     removeProduct(id);
   }
@@ -136,6 +161,20 @@ export default function CartPage() {
     productsTotal += price;
   }
 
+  if (isSuccess) {
+    return (
+      <Layout>
+        <Wrapper>
+          <CollWrapper>
+            <Box>
+              <h1>Thanks for your order!</h1>
+              <p>We will email you when your order will be sent.</p>
+            </Box>
+          </CollWrapper>
+        </Wrapper>
+      </Layout>
+    );
+  }
   return (
     <Layout>
       <Wrapper>
@@ -147,10 +186,11 @@ export default function CartPage() {
               <>
                 <Table>
                   <thead>
-                    <tr></tr>
-                    <th>Produkt</th>
-                    <th>Preis</th>
-                    <th></th>
+                    <tr>
+                      <th>Produkt</th>
+                      <th>Preis</th>
+                      <th></th>
+                    </tr>
                   </thead>
                   <tbody>
                     {products.map((product) => (
@@ -270,7 +310,9 @@ export default function CartPage() {
                     onChange={(ev) => setEmail(ev.target.value)}
                   />
                 </div>
-                <Button prmyWide="1"> Anfrage absenden</Button>{' '}
+                <Button prmyWide="1" onClick={goToPayment}>
+                  Anfrage absenden
+                </Button>
               </FormWrapper>
             </Box>
           )}
