@@ -38,7 +38,7 @@ const Subheader = styled.div`
   /* backdrop-filter: blur(5px); */
   z-index: 5;
   //background-color: rgba(147, 149, 151, 1);
-  background-color: rgba(241, 241, 241, 0.9);
+  background-color: rgba(241, 242, 241, 0.9);
 `;
 
 const NavLink = styled(Link)`
